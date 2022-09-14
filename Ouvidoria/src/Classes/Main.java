@@ -12,7 +12,7 @@ public class Main {
         System.out.println("1 - Criar nova manifestação\n2 - Listar todas as manifestações\n3 - Pesquisar manifestação por ID\n4 - Excluir manifestação\n5 - Sair");
         int entradaMenu = Teclado.leInt();
             while (true) { //Verificação de entrada válida do utilizador
-                if (entradaMenu > 4 || entradaMenu <= 0) {
+                if (entradaMenu > 5 || entradaMenu <= 0) {
                     System.out.println("Entrada inválida, tente novamente");
                     entradaMenu = Teclado.leInt();
                 }
@@ -20,7 +20,16 @@ public class Main {
             Manifestacao novaManifestacao = new Manifestacao(); //Instanciando a classe Manifestação e criando meu objeto
             if (entradaMenu == 1) {
                 int numeroManifestacoes = listmanifestacoes.size(); //Lendo o número de elementos da lista
-                novaManifestacao.id = numeroManifestacoes +1; //Criando ID a partir do número de elementos da lista
+                if (numeroManifestacoes == 0){
+                    novaManifestacao.id =1;
+                }else {
+                    for (Manifestacao m : listmanifestacoes) {
+
+                        int idManifestacao = m.id + 1;
+                        novaManifestacao.id = idManifestacao;
+                    }
+                }
+
 
 
                 System.out.println("Para criar uma manifestação você deve fornecer seu nome, escolher a categoria da manifestação e por fim a descrição");
@@ -64,7 +73,7 @@ public class Main {
             else if (entradaMenu == 3) {
 //                continue;
                 if (listmanifestacoes.size() == 0){
-                    System.out.printf("Lista de manifestações vazia");
+                    System.out.printf("Lista de manifestações vazia\n");
                 }
                 else {
                     System.out.println("Digite o ID da manifestação: ");
@@ -88,18 +97,21 @@ public class Main {
                         if (idManifestacao == m.id) {
                             listmanifestacoes.remove(m);
                             System.out.printf("Manifestação excluída com sucesso\n");
+                            break;
+
                         } else {
                             System.out.printf("Id de manifestação não encontrada\n");
                         }
                     }
                 }
             }
-                else if (entradaMenu == 5) {
-                System.out.println("Obrigado por usar nossos sistemas");
-                break;}
+            else if (entradaMenu == 5) {
+            System.out.println("Obrigado por usar nossos sistemas");
+            break;
             }
         }
     }
+}
 
 
 
