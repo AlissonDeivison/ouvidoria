@@ -98,9 +98,6 @@ public class Main {
                             listmanifestacoes.remove(m);
                             System.out.printf("Manifestação excluída com sucesso\n");
                             break;
-
-                        } else {
-                            System.out.printf("Id de manifestação não encontrada\n");
                         }
                     }
                 }
